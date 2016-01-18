@@ -162,6 +162,11 @@ UIKIT_EXTERN NSString *const YYTextTruncationToken; ///< Horizontal ellipsis (U+
  */
 typedef void(^YYTextAction)(UIView *containerView, NSAttributedString *text, NSRange range, CGRect rect);
 
+/**
+ The tap/long press action callback for none-highlight part.
+*/
+typedef void(^YYNoneHighlightTextAction)();
+
 
 /**
  YYTextBackedString objects are used by the NSAttributedString class cluster

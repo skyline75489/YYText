@@ -133,6 +133,9 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
             [self _removeHighlightAnimated:YES];
             _state.trackingTouch = NO;
         }
+    } else if (_noneHighlightLongPressAction) {
+        _noneHighlightLongPressAction();
+        _state.trackingTouch = NO;
     }
 }
 
@@ -455,6 +458,12 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
         _state.touchMoved = NO;
         [self _startLongPressTimer];
         [self _showHighlightAnimated:NO];
+    } else if (_noneHighlightTapAction) {
+        _touchBeganPoint = point;
+        _state.trackingTouch = YES;
+        _state.swallowTouch = YES;
+        _state.touchMoved = NO;
+        [self _startLongPressTimer];
     } else {
         _state.trackingTouch = NO;
         _state.swallowTouch = NO;
@@ -511,6 +520,9 @@ static dispatch_queue_t YYLabelGetReleaseQueue() {
                 CGRect rect = [_innerLayout rectForRange:[YYTextRange rangeWithRange:_highlightRange]];
                 rect = [self _convertRectFromLayout:rect];
                 tapAction(self, _innerText, _highlightRange, rect);
+            }
+            else if (_noneHighlightTapAction) {
+                _noneHighlightTapAction();
             }
         }
         [self _removeHighlightAnimated:_fadeOnHighlight];

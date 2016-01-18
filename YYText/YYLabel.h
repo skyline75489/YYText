@@ -196,11 +196,22 @@
 @property (nullable, nonatomic, copy) YYTextAction highlightTapAction;
 
 /**
+ When user tap the none-highlight part of label, this action will be called.
+ The default value is nil.
+ */
+@property (nullable, nonatomic, copy) YYNoneHighlightTextAction noneHighlightTapAction;
+
+/**
  When user long press the highlight range of text, this action will be called.
  The default value is nil. 
  */
 @property (nullable, nonatomic, copy) YYTextAction highlightLongPressAction;
 
+/**
+ When user long press the none-highlight part of label, this action will be called.
+ The default value is nil.
+ */
+@property (nullable, nonatomic, copy) YYNoneHighlightTextAction noneHighlightLongPressAction;
 
 #pragma mark - Configuring the Display Mode
 ///=============================================================================
